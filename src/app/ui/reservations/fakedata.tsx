@@ -6,7 +6,7 @@ export default function fakedata(){
             email: "placeholder@gmail.com",
             phone: "0123232",
             date: new Date(),
-            time: "T1",
+            start_time: 12,
             people: 2,
         },
         {
@@ -15,7 +15,7 @@ export default function fakedata(){
             email: "placeholder@gmail.com",
             phone: "0123232",
             date: new Date(),
-            time: "T1",
+            start_time: 12,
             people: 3,
         },
         {
@@ -24,7 +24,7 @@ export default function fakedata(){
             email: "placeholder@gmail.com",
             phone: "0123232",
             date: new Date(),
-            time: "T2",
+            start_time: 14,
             people: 7,
         },
         {
@@ -33,7 +33,7 @@ export default function fakedata(){
             email: "placeholder@gmail.com",
             phone: "0123232",
             date: new Date(),
-            time: "T3",
+            start_time: 16,
             people: 4,
         },
     ]

@@ -19,11 +19,12 @@ const OtherLinks = [
   { name: "Logout", path: "/dashboard/logout" },
 ];
 
+function toggleNav() {
+  const nav = document.querySelector(".nav-collapsable");
+  nav.classList.toggle("nav-hidden");
+}
+
 export default function sidenav({ state }: { state: string }) {
-  function toggleNav() {
-    const nav = document.querySelector(".nav-collapsable");
-    nav.classList.toggle("nav-hidden");
-  }
   return (
     <div className="flex h-full shrink-0 bg-gray-800 p-4 flex-col nav-collapsable nav-hidden">
       <div className="flex items-center h-16 w-full border-b-2 border-gray-700 ">

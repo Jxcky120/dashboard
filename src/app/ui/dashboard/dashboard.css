@@ -7,7 +7,6 @@
 
 .sidenav_item:hover {
     background-color: #181818;
-
 }
 
 .selected {
@@ -27,6 +26,73 @@
 .nav-collapsable {
     height: 100%;
     transition: none;
+}
+
+.date-selector{
+    background-color: #445c79;
+    color: white;
+    border-radius: 5px;
+    overflow-x: hidden;
+    font-size: large;
+}
+
+.date-selected{
+    background-color: #58708d;
+}
+
+.date-selector button:hover{
+    transition: background-color 0.1s;
+    background-color: #6a83a1;
+}
+
+.date-right, .date-left{
+    background-color: #58708d;
+    color: white;
+    border: none;
+    font-size: large;
+    width: 50%;
+    height: 40px;
+}
+
+.timetable{
+    margin-top: 1rem;
+    overflow-y: auto;
+    max-height: 72vh;
+}
+
+.timetable:nth-last-child(1){
+    border-bottom: 2px solid #6a83a1;
+}
+
+.time-label, .timetable-item{
+    background-color: #6a83a1;
+    border-radius: 5px;
+    color: white;
+    border: 2px solid #6a83a1;
+    border-bottom: none;
+    padding: 4px 4px;
+    height: 32px;
+    overflow: hidden;
+}
+
+.timetable-cell{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.timetable-row{
+    background-color: #445c79;
+    color: white;
+    border: 2px solid #6a83a1;
+    border-bottom: none;
+    overflow: hidden;
+    padding: 0.5rem 0.75rem;
+    flex-shrink: 0; 
+    flex-grow: 0; 
+    height: 64px;
+    align-items: center;
 }
 
 @media screen and (max-width: 767px) {
