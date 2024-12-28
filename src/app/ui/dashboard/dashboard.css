@@ -1,0 +1,16 @@
+.sidenav_item{
+    text-decoration: none;
+    transition: 0.1s;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+}
+
+.sidenav_item:hover{
+    background-color: #181818;
+    
+}
+
+.selected{
+    background-color: #445c79;
+
+}
