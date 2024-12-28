@@ -1,16 +1,46 @@
-.sidenav_item{
+.sidenav_item {
     text-decoration: none;
     transition: 0.1s;
     font-family: 'Roboto', sans-serif;
     border-radius: 5px;
 }
 
-.sidenav_item:hover{
+.sidenav_item:hover {
     background-color: #181818;
-    
+
 }
 
-.selected{
+.selected {
     background-color: #445c79;
+}
 
+.nav-button {
+    border-radius: 5px;
+    margin-right: 5px;
+    display: none;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.nav-collapsable {
+    height: 100%;
+    transition: none;
+}
+
+@media screen and (max-width: 767px) {
+    .nav-collapsable {
+        height: 100%;
+        overflow: hidden;
+        transition: height 0.15s ease-in-out;
+    }
+
+    .nav-collapsable.nav-hidden {
+        height: 5rem;
+    }
+
+    .nav-button {
+        display: block;
+    }
 }

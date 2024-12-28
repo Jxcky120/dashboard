@@ -1,3 +1,5 @@
+"use client";
+
 import "./dashboard.css";
 import clsx from "clsx";
 import Link from "next/link";
@@ -18,14 +20,24 @@ const OtherLinks = [
 ];
 
 export default function sidenav({ state }: { state: string }) {
+  function toggleNav() {
+    const nav = document.querySelector(".nav-collapsable");
+    nav.classList.toggle("nav-hidden");
+  }
   return (
-    <div className="flex h-full shrink-0 bg-gray-800 p-4 flex-col">
+    <div className="flex h-full shrink-0 bg-gray-800 p-4 flex-col nav-collapsable nav-hidden">
       <div className="flex items-center h-16 w-full border-b-2 border-gray-700 ">
         <h1 className="text-white text-2xl font-bold">Dashboard</h1>
+        <button
+          className="ml-auto text-white h-12 w-12 bg-gray-500 border-b-2 border-gray-700 nav-button"
+          onClick={toggleNav}
+        >
+          O
+        </button>
       </div>
-      <div className="collapsable">
+      <div className="nav-links">
         <div className="flex items-center h-8 w-full mt-4">
-          <p className="text-gray-700 text-sm">Main</p>
+          <p className="text-gray-600 text-sm">MAIN</p>
         </div>
 
         {MainLinks.map((link) => (
@@ -44,9 +56,9 @@ export default function sidenav({ state }: { state: string }) {
         ))}
 
         <div className="flex items-center h-8 w-full mt-4">
-          <p className="text-gray-700 text-sm">Others</p>
+          <p className="text-gray-600 text-sm">OTHERS</p>
         </div>
-        
+
         {OtherLinks.map((link) => (
           <Link href={link.path} key={link.name}>
             <div
@@ -61,7 +73,6 @@ export default function sidenav({ state }: { state: string }) {
             </div>
           </Link>
         ))}
-
       </div>
     </div>
   );

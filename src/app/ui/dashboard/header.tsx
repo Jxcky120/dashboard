@@ -1,3 +1,5 @@
+import ProfileBanner from "@/app/ui/dashboard/profileBanner";
+
 export default function header({
   title,
   description,
@@ -6,8 +8,8 @@ export default function header({
   description: string;
 }) {
   return (
-    <div className="flex flex-wrap -mx-3 items-center">
-      <div className="w-full lg:w-1/2 flex items-center mb-5 lg:mb-0 px-3">
+    <div className="flex flex-wrap -mx-3 items-center space-between">
+      <div className="lg:w-1/2 flex items-center mb-5 lg:mb-0 px-3">
         <span className="inline-flex justify-center items-center w-16 h-16 mr-4 bg-violet-500 rounded">
           <svg
             className="h-7 w-7 text-white"
@@ -27,8 +29,12 @@ export default function header({
           <p className="text-sm text-gray-500 font-medium">{description}</p>
         </div>
       </div>
-      <div className="w-full lg:w-auto ml-auto px-3">
-        // Profile banner here
+      <div className="">
+        <ProfileBanner
+          username="John Doe"
+          avatar="maybe preloaded ones"
+          id="001"
+        />
       </div>
     </div>
   );
