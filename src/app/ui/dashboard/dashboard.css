@@ -73,13 +73,17 @@
     padding: 4px 4px;
     height: 32px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .timetable-cell{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     gap: 0.5rem;
     padding: 0 0.5rem;
+    overflow: auto;
+    height: 64px;
 }
 
 .timetable-row{

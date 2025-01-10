@@ -1,40 +1,38 @@
-export default function fakedata(){
-    return [
-        {
-            id: 1,
-            name: "John Doe",
-            email: "placeholder@gmail.com",
-            phone: "0123232",
-            date: new Date(),
-            start_time: 12,
-            people: 2,
-        },
-        {
-            id: 2,
-            name: "asd Doe",
-            email: "placeholder@gmail.com",
-            phone: "0123232",
-            date: new Date(),
-            start_time: 12,
-            people: 3,
-        },
-        {
-            id: 3,
-            name: " a sd Doe",
-            email: "placeholder@gmail.com",
-            phone: "0123232",
-            date: new Date(),
-            start_time: 14,
-            people: 7,
-        },
-        {
-            id: 4,
-            name: "asdasdsad Doe",
-            email: "placeholder@gmail.com",
-            phone: "0123232",
-            date: new Date(),
-            start_time: 16,
-            people: 4,
-        },
-    ]
+import { start } from "repl";
+
+export default function fakedata() {
+  let start_of_last_week = new Date(
+    new Date().setDate(new Date().getDate() - 7)
+  );
+
+  let data = [];
+  for (let i = 0; i < 10000; i++) {
+    if(i % 1000 === 0) {
+        start_of_last_week = new Date(start_of_last_week.setDate(start_of_last_week.getDate() + 7));
+    }
+    let date = new Date(
+      new Date().setDate(
+        start_of_last_week.getDate() + Math.floor(Math.random() * 7)
+      )
+    );
+
+    let start_time = Math.floor(Math.random() * 48) * 0.5;
+    let people = Math.floor(Math.random() * 10);
+    let name = "John Doe from" + date.getDate() + "/" + date.getMonth();
+
+    let email = "a" + i + "@gmail.com";
+    let phone = "0123232";
+
+    data.push({
+      id: i,
+      name,
+      email,
+      phone,
+      date,
+      start_time,
+      people,
+    });
+  }
+
+  return data;
 }

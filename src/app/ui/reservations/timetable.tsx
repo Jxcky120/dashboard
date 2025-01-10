@@ -19,25 +19,56 @@ function time_toString(time: number) {
 function generate_days(currDate: Date) {
   return Array.from(
     { length: num_days },
-    (_, i) => new Date(new Date().setDate(currDate.getDate() - 3 + i))
+    (_, i) => new Date(new Date().setDate(currDate.getDate() + i))
   );
 }
 
 export default function timetable({ date }: { date: Date }) {
   let data = fakedata();
-  let today = new Date(date);
+  let today = new Date(date).getDay();
 
-  const list_days = generate_days(today);
+  let start_of_week = new Date(new Date(date).setDate(date.getDate() - date.getDay()));
 
-  function changeDate(e: Date) {
+  let list_days = generate_days(start_of_week);
+
+  function changeDate(e: number) {
     today = e;
 
     Array.from(document.querySelectorAll(".date-item")).forEach((item) => {
       item.classList.remove("date-selected");
 
-      if (item.getAttribute("dataset-key") === e.getDate().toString()) {
+      if (item.getAttribute("dataset-key") == e.toString()) {
         item.classList.add("date-selected");
       }
+    });
+
+    updateData();
+  }
+
+  function changeWeek(add_week: number) {
+    start_of_week = new Date(start_of_week.setDate(start_of_week.getDate() + add_week * 7));
+
+    list_days = generate_days(start_of_week);
+
+    Array.from(document.querySelectorAll(".date-item")).forEach((item, index) => {
+      item.setAttribute("dataset-key", list_days[index].getDay().toString());
+      const secondChild = item.querySelector("p:nth-child(2)");
+      if (secondChild) {
+        secondChild.textContent = list_days[index].getDate().toString();
+      }
+
+      const firstChild = item.querySelector("p:nth-child(1)");
+      if (firstChild) {
+        firstChild.textContent = days[list_days[index].getDay()];
+      }
+
+      if (list_days[index].getDay() === today) {
+        item.classList.add("date-selected");
+      } else {
+        item.classList.remove("date-selected");
+      }
+
+      item.addEventListener("click", () => changeDate(list_days[index].getDay()));
     });
 
     updateData();
@@ -59,7 +90,7 @@ export default function timetable({ date }: { date: Date }) {
               .filter(
                 (item) =>
                   item.start_time === start_time + index * time_interval &&
-                  item.date.getDay() == today.getDay()
+                  item.date.getDate() === list_days[today].getDate()
               )
               .map(
                 (item) =>
@@ -77,24 +108,23 @@ export default function timetable({ date }: { date: Date }) {
   return (
     <div className="flex flex-col timetable-container w-full lg:w-1/2 p-4 h-full">
       <div className="flex flex-row date-selector space-between">
-        <button className="date-left">{"<"}</button>
-
+        <button className="date-left" onClick={() => changeWeek(-1)}>{"<"}</button>
         {list_days.map((day, index) => (
           <button
-            key={day.getDate()}
-            dataset-key={day.getDate()}
+            key={day.getDay()}
+            dataset-key={day.getDay()}
             className={clsx(
               "date-item w-full",
-              day.getDate() === today.getDate() && "date-selected"
+              day.getDay() === today && "date-selected"
             )}
-            onClick={() => changeDate(day)}
+            onClick={() => changeDate(day.getDay())}
           >
             <p className="text-sm">{days[day.getDay()]}</p>
             <p className="text-sm">{day.getDate()}</p>
           </button>
         ))}
 
-        <button className="date-right">{">"}</button>
+        <button className="date-right"  onClick={() => changeWeek(1)}>{">"}</button>
       </div>
       <div className="flex flex-col timetable">
         {Array.from({
@@ -109,7 +139,7 @@ export default function timetable({ date }: { date: Date }) {
                 .filter(
                   (item) =>
                     item.start_time === start_time + index * time_interval &&
-                    item.date.getDay() == today.getDay()
+                    item.date.getDay() == today
                 )
                 .map((item) => (
                   <div key={item.id} className="timetable-item">
